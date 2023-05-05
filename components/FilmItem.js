@@ -1,14 +1,15 @@
 // Components/FilmItem.js
 
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, Button } from 'react-native'
 import {getImageFromApi} from '../API/TMDBApi';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 class FilmItem extends React.Component {
     render() {
-        const film = this.props.film
-        
+        // const film = this.props.film
+        const { film, displayDetailFilm,navigationObject} = this.props;  
         return (
-          <View style={styles.main_container}>
+          <TouchableOpacity style={styles.main_container} onPress={() => displayDetailFilm(film.id)} >
             <Image
               style={styles.image}
               source={{uri: getImageFromApi(film.poster_path)}}
@@ -23,9 +24,18 @@ class FilmItem extends React.Component {
               </View>
               <View style={styles.date_container}>
                 <Text style={styles.date_text}>Sorti le {film.release_date}</Text>
+                <Button style={styles.date_button} 
+                  title="Voir les infos" 
+                  onPress={() => 
+                  { navigationObject.navigate('FilmDetail',{
+                    filmId: film.id,
+                    titleFilm: film.title
+                    })
+                  } }
+                />
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         )
     }
 }
@@ -69,11 +79,15 @@ const styles = StyleSheet.create({
     color: '#666666'
   },
   date_container: {
-    flex: 1
+    flex: 3
   },
   date_text: {
     textAlign: 'right',
     fontSize: 14
+  },
+  date_button: {
+    fontSize: 14,
+    height:30
   }
 })
 

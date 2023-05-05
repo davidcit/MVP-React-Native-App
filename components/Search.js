@@ -79,7 +79,11 @@ class Search extends React.Component {
       }
     );
   }
+  _detailFilmClick = (idFilm) => {
+    // console.log("Display film with id " + idFilm)
+  }
   render() {
+
     return (
       <View style={styles.viewStyle}>
         <TextInput
@@ -94,6 +98,7 @@ class Search extends React.Component {
           onPress={() => this._loadFilms()}
         />
         <FlatList
+          
           data={this.state.films}
           keyExtractor={(item) => item.id.toString()}
           onEndReachedThreshold={1}
@@ -102,7 +107,7 @@ class Search extends React.Component {
               this._loadFilms();
             }
           }}
-          renderItem={({ item }) => <FilmItem film={item} />}
+          renderItem={({ item }) => <FilmItem film={item} displayDetailFilm={this._detailFilmClick} navigationObject={this.props.navigation}/>}
         />
         {this._displayLoading()}
       </View>
@@ -122,7 +127,7 @@ const styles = StyleSheet.create({
     color: "#772F1A",
   },
   viewStyle: {
-    marginTop: 40,
+    // marginTop: 40,
   },
   loadingContainer: {
     position: "absolute",

@@ -10,6 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 API/
+Navigation/
 # macOS
 .DS_Store
 
