@@ -40,7 +40,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'TMDB Movie' }}/>
-        <Stack.Screen name="FilmDetail" component={FilmDetail} />
+        <Stack.Screen style={styles.detailScreen}name="FilmDetail" component={FilmDetail}  options={{ title: 'Détail du film' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   paragraph: {
+    color: '#fff'
+  },
+  detailScreen: {
+    backgroundColor: '#000',
     color: '#fff'
   }
 });
